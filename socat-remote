@@ -30,13 +30,13 @@
 
 while read -r password
 do
-  if echo "$password" | grep -Fxqa 'password'
+  if [ "$password" = "$master_pw" ]
   then
-    echo "Authenticated successfully!"
+    echo 'Authenticated successfully!'
     : > /tmp/retries
     sh
   else
-    echo "Wrong password!" | tee -a /tmp/retries
+    echo 'Wrong password!' | tee -a /tmp/retries
     if [ `wc -l < /tmp/retries` -ge 3 ]
     then
       : > /tmp/retries
