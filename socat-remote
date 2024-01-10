@@ -33,13 +33,13 @@ do
   if echo "$password" | grep -Fxqa 'password'
   then
     echo "Authenticated successfully!"
-    cat /dev/null > /tmp/retries
+    : > /tmp/retries
     sh
   else
     echo "Wrong password!" | tee -a /tmp/retries
     if [ `wc -l < /tmp/retries` -ge 3 ]
     then
-      cat /dev/null > /tmp/retries
+      : > /tmp/retries
       exit
     fi
   fi
