@@ -5,7 +5,7 @@ I made this script so that I could remote access machines with more ease, as wel
 
 #### How to use
 Install [socat](http://www.dest-unreach.org/socat), change the script's execution permissions and run the following:\
-``( export master_pw="`head -1`" ; socat -v exec:"nc -kl 0.0.0.0 <port>",crnl exec:./socat-remote,stderr )``
+``( read -r master_pw ; export master_pw ; socat -v exec:"nc -kl 0.0.0.0 <port>",crnl exec:./socat-remote,stderr )``
 
 #### Notes
 For multiple remote accesses, replace `exec:"nc -kl 0.0.0.0 <port>",crnl` with `tcp-l:<port>,fork,reuseaddr,crnl`
